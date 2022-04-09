@@ -1,27 +1,21 @@
 import PropTypes from 'prop-types';
+import TodoItem, { PTTodo } from './TodoItem';
 
 const TodoList = (props) => {
   const { todos } = props;
 
-  if (!todos.length) return <div>Нет</div>;
+  if (!todos.length) return <div>Nothing data</div>;
 
   return (
     <>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id}>{todo.title}</li>
+          <TodoItem key={todo.id} />
         ))}
       </ul>
     </>
   );
 };
-
-const PTTodo = PropTypes.shape({
-  userId: PropTypes.number.isRequired,
-  id: PropTypes.number,
-  title: PropTypes.string,
-  completed: PropTypes.bool,
-});
 
 TodoList.defaultProps = {
   todos: [],
@@ -31,5 +25,5 @@ TodoList.propTypes = {
   todos: PropTypes.arrayOf(PTTodo),
 };
 
-export { TodoList, PTTodo };
+export { TodoList };
 export default TodoList;
